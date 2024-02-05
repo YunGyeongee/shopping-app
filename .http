@@ -1,2 +1,12 @@
 ### 전체 유저 정보 가져오기
 GET http://localhost:3000/user
+
+### 유저 정보 가져오기
+POST http://localhost:3000/user
+content-type: application/json
+
+{
+  "email": "user05@gmail.com",
+  "password": "user05",
+  "phone": "010-2252-5344"
+}
