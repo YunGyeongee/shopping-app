@@ -4,9 +4,11 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import ConfigModule from './config';
 
 @Module({
   imports: [
+    ConfigModule(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
@@ -15,7 +17,8 @@ import { DataSource } from 'typeorm';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      migrations: ['src/database/migrations/*.ts'],
+      migrations: ['dist/database/migrations/*.ts'],
+      migrationsTableName: 'migrations',
       synchronize: true,
     }),
     UserModule,
