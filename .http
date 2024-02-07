@@ -10,3 +10,21 @@ content-type: application/json
   "password": "user05",
   "phone": "010-2252-5344"
 }
+
+### 로그인
+POST http://localhost:3000/user/login
+content-type: application/json
+
+{
+  "email": "user05@gmail.com",
+  "password": "user05"
+}
+
+### 로그인(passport)
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+  "email": "user05@gmail.com",
+  "password": "user05"
+}
