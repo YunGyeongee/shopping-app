@@ -1,10 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './users.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
-import { compare, hash } from 'bcrypt';
-import { LoginUserDto } from './dto/login-user.dto';
+import { hash } from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -16,14 +15,27 @@ export class UserService {
   async getUsers() {
     return this.usersRepository.find();
   }
+  async findOneByEmail(email: string) {
+    const user = this.usersRepository.findOne({
+      where: { email },
+      withDeleted: true,
+    });
+
+    if (user) {
+      throw new BadRequestException('중복된 이메일 입니다.');
+    }
+
+    return user;
+  }
+  async encryptedPassword(password: string) {
+    return await hash(password, 11);
+  }
   async register(data: CreateUserDto) {
     const { email, password, phone } = data;
 
-    const encryptedPassword = await hash(password, 11);
-
     return this.usersRepository.save({
       email,
-      password: encryptedPassword,
+      password,
       phone,
     });
   }
@@ -31,19 +43,5 @@ export class UserService {
     return this.usersRepository.findOneBy({
       email,
     });
-  }
-  async login(data: LoginUserDto) {
-    const { email, password } = data;
-    const user = await this.usersRepository.findOneBy({
-      email,
-    });
-
-    if (!user) throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
-
-    const match = await compare(password, user.password);
-
-    if (!match) throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
-
-    return user;
   }
 }

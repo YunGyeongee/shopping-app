@@ -23,7 +23,7 @@ import ConfigModule from './config';
       synchronize: true,
     }),
     UserModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

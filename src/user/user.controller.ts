@@ -1,22 +1,38 @@
-import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { LoginUserDto } from './dto/login-user.dto';
+import { AuthService } from '../auth/auth.service';
+import { LocalAuthGuard } from '../auth/local-auth.guard';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Get()
   getUsers() {
     return this.userService.getUsers();
   }
   @Post()
-  register(@Body(new ValidationPipe()) data: CreateUserDto) {
+  async register(@Body(new ValidationPipe()) data: CreateUserDto) {
+    await this.userService.findOneByEmail(data.email);
+    data.password = await this.userService.encryptedPassword(data.password);
+
     return this.userService.register(data);
   }
+  @UseGuards(LocalAuthGuard)
   @Post('login')
-  login(@Body(new ValidationPipe()) data: LoginUserDto) {
-    return this.userService.login(data);
+  login(@Request() req) {
+    return this.authService.login(req.user);
   }
 }
