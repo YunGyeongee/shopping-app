@@ -33,9 +33,6 @@ export class Users {
   @Column({ nullable: true, name: 'address_detail' })
   addressDetail: string;
 
-  @Column({ default: false, name: 'is_seller' })
-  isSeller: boolean;
-
   @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
   createdAt: Date;
 

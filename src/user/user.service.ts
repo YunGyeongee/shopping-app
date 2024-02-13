@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Users } from '../entities/users.entity';
+import { Users } from './users.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { hash } from 'bcrypt';
@@ -30,7 +30,7 @@ export class UserService {
   async encryptedPassword(password: string) {
     return await hash(password, 11);
   }
-  async register(data: CreateUserDto) {
+  async create(data: CreateUserDto) {
     const { email, password, phone } = data;
 
     return this.usersRepository.save({

@@ -24,11 +24,11 @@ export class UserController {
     return this.userService.getUsers();
   }
   @Post()
-  async register(@Body(new ValidationPipe()) data: CreateUserDto) {
+  async create(@Body(new ValidationPipe()) data: CreateUserDto) {
     await this.userService.findOneByEmail(data.email);
     data.password = await this.userService.encryptedPassword(data.password);
 
-    return this.userService.register(data);
+    return this.userService.create(data);
   }
   @UseGuards(LocalAuthGuard)
   @Post('login')
