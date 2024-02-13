@@ -4,15 +4,15 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Sellers } from './sellers.entity';
+import { Seller } from './seller.entity';
 import { Repository } from 'typeorm';
 import { CreateSellerDto } from './dto/create-seller.dto';
 
 @Injectable()
 export class SellerService {
   constructor(
-    @InjectRepository(Sellers)
-    private readonly sellersRepository: Repository<Sellers>,
+    @InjectRepository(Seller)
+    private readonly sellersRepository: Repository<Seller>,
   ) {}
 
   async findOneByLicenseNumber(licenseNumber: string) {

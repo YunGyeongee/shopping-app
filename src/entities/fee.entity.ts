@@ -1,7 +1,12 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-@Entity()
-export class fees {
+@Entity('fees')
+export class fee {
   @PrimaryGeneratedColumn()
   id: number;
 
