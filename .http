@@ -20,3 +20,27 @@ content-type: application/json
   "password": "user05"
 }
 
+### 판매자 등록
+POST http://localhost:3000/seller
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzgyODAzNywiZXhwIjoxNzA3ODM4ODM3fQ.vgpI6Tfl0iUN0yC4nF6ZaMKUCBltpqTyCiGSXH7MiOg
+
+{
+  "userId": 1,
+  "name": "만원의행복",
+  "licenseNumber": "1234567892",
+  "bankName": "신한은행",
+  "accountNumber": "110424092987",
+  "zip": "06307",
+  "address": "서울시 강남구",
+  "addressDetail": "논현동"
+}
+
+### 판매자 삭제
+PUT http://localhost:3000/seller/delete
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzgyODAzNywiZXhwIjoxNzA3ODM4ODM3fQ.vgpI6Tfl0iUN0yC4nF6ZaMKUCBltpqTyCiGSXH7MiOg
+
+{
+  "licenseNumber": "1234567892"
+}

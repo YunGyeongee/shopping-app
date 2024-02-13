@@ -1,28 +1,31 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
   DeleteDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-export class Users {
+export class Sellers {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: true })
+  @Column({ name: 'user_id' })
+  userId: number;
+
+  @Column({ comment: '사업장명' })
   name: string;
 
-  @Column()
-  email: string;
+  @Column({ name: 'license_number', comment: '사업자번호' })
+  licenseNumber: string;
 
-  @Column()
-  password: string;
+  @Column({ name: 'bank_name', comment: '은행명' })
+  bankName: string;
 
-  @Column()
-  phone: string;
+  @Column({ name: 'account_number', comment: '계좌번호' })
+  accountNumber: string;
 
   @Column({ nullable: true })
   zip: string;
