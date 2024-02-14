@@ -1,7 +1,7 @@
 import {
   BadRequestException,
   Injectable,
-  UnauthorizedException,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Seller } from './seller.entity';
@@ -15,20 +15,7 @@ export class SellerService {
     private readonly sellersRepository: Repository<Seller>,
   ) {}
 
-  async findOneByLicenseNumber(licenseNumber: string) {
-    const seller = this.sellersRepository.findOne({
-      where: { licenseNumber: licenseNumber },
-    });
-
-    if (seller) {
-      throw new BadRequestException('이미 등록된 사업자번호 입니다.');
-    }
-
-    return seller;
-  }
   async create(userId: number, data: CreateSellerDto) {
-    await this.findOneByLicenseNumber(data.licenseNumber);
-
     // todo - 사업자번호 유효성 체크 -> api 검증으로 변경하기
     const licenseLengthCheck = data.licenseNumber.length;
 
@@ -36,7 +23,7 @@ export class SellerService {
       throw new BadRequestException('사업자번호가 유효하지 않습니다.');
     }
 
-    return this.sellersRepository.save({
+    const seller = this.sellersRepository.create({
       userId: userId,
       name: data.name,
       licenseNumber: data.licenseNumber,
@@ -46,6 +33,17 @@ export class SellerService {
       address: data.address,
       addressDetail: data.addressDetail,
     });
+
+    try {
+      await this.sellersRepository.save(seller);
+    } catch (err) {
+      if (err.code === "ER_DUP_ENTRY") {
+        throw new BadRequestException('이미 등록된 사업자번호 입니다.');
+      } else {
+        throw new InternalServerErrorException(err)
+      }
+    }
+    return seller;
   }
   async findOneSeller(licenseNumber: string) {
     return this.sellersRepository.findOne({

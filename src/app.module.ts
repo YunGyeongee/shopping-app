@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { SellerModule } from './seller/seller.module';
 import ConfigModule from './config';
 
+const SnakeNamingStrategy = require('typeorm-naming-strategies').SnakeNamingStrategy;
 @Module({
   imports: [
     ConfigModule(),
@@ -22,6 +23,7 @@ import ConfigModule from './config';
       migrations: ['dist/database/migrations/*.ts'],
       migrationsTableName: 'migrations',
       synchronize: true,
+      namingStrategy: new SnakeNamingStrategy(),
     }),
     UserModule,
     AuthModule,

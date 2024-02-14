@@ -26,9 +26,8 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzgyODAzNywiZXhwIjoxNzA3ODM4ODM3fQ.vgpI6Tfl0iUN0yC4nF6ZaMKUCBltpqTyCiGSXH7MiOg
 
 {
-  "userId": 1,
-  "name": "만원의행복",
-  "licenseNumber": "1234567892",
+  "name": "만원의행복7",
+  "licenseNumber": "1234567896",
   "bankName": "신한은행",
   "accountNumber": "110424092987",
   "zip": "06307",
