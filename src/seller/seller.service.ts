@@ -13,7 +13,7 @@ import { CreateSellerDto } from './dto/create-seller.dto';
 export class SellerService {
   constructor(
     @InjectRepository(Seller)
-    private readonly sellersRepository: Repository<Seller>,
+    private readonly sellerRepository: Repository<Seller>,
   ) {}
 
   async create(userId: number, data: CreateSellerDto) {
@@ -24,7 +24,7 @@ export class SellerService {
       throw new BadRequestException('사업자번호가 유효하지 않습니다.');
     }
 
-    const seller = this.sellersRepository.create({
+    const seller = this.sellerRepository.create({
       userId: userId,
       name: data.name,
       licenseNumber: data.licenseNumber,
@@ -36,7 +36,7 @@ export class SellerService {
     });
 
     try {
-      await this.sellersRepository.save(seller);
+      await this.sellerRepository.save(seller);
     } catch (err) {
       if (err.code === 'ER_DUP_ENTRY') {
         throw new BadRequestException('이미 등록된 사업자번호 입니다.');
@@ -47,7 +47,7 @@ export class SellerService {
     return seller;
   }
   async delete(userId: number, licenseNumber: string) {
-    const seller = await this.sellersRepository.findOne({
+    const seller = await this.sellerRepository.findOne({
       where: { licenseNumber },
     });
 
@@ -59,10 +59,10 @@ export class SellerService {
       throw new UnauthorizedException('회원정보가 다릅니다.');
     }
 
-    return this.sellersRepository.softDelete({ id: seller.id });
+    return this.sellerRepository.softDelete({ id: seller.id });
   }
   async findSellerByUser(userId: number) {
-    return await this.sellersRepository.find({
+    return await this.sellerRepository.find({
       where: { userId },
     });
   }
