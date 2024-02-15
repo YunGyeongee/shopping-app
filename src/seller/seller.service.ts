@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Seller } from './seller.entity';
@@ -37,21 +38,18 @@ export class SellerService {
     try {
       await this.sellersRepository.save(seller);
     } catch (err) {
-      if (err.code === "ER_DUP_ENTRY") {
+      if (err.code === 'ER_DUP_ENTRY') {
         throw new BadRequestException('이미 등록된 사업자번호 입니다.');
       } else {
-        throw new InternalServerErrorException(err)
+        throw new InternalServerErrorException(err);
       }
     }
     return seller;
   }
-  async findOneSeller(licenseNumber: string) {
-    return this.sellersRepository.findOne({
-      where: { licenseNumber: licenseNumber },
-    });
-  }
   async delete(userId: number, licenseNumber: string) {
-    const seller = await this.findOneSeller(licenseNumber);
+    const seller = await this.sellersRepository.findOne({
+      where: { licenseNumber },
+    });
 
     if (!seller) {
       throw new BadRequestException('사업자를 찾을 수 없습니다.');
@@ -62,5 +60,10 @@ export class SellerService {
     }
 
     return this.sellersRepository.softDelete({ id: seller.id });
+  }
+  async findSellerByUser(userId: number) {
+    return await this.sellersRepository.find({
+      where: { userId },
+    });
   }
 }

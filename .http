@@ -20,16 +20,21 @@ content-type: application/json
   "password": "user05"
 }
 
+### 사용자별 판매자 조회
+GET http://localhost:3000/seller
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzk1NjE4NSwiZXhwIjoxNzA3OTY2OTg1fQ.CZHwL_jQ4yxMCy7N7IGaap-gNHUes74scTHVWmGKd9g
+
 ### 판매자 등록
 POST http://localhost:3000/seller
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzgyODAzNywiZXhwIjoxNzA3ODM4ODM3fQ.vgpI6Tfl0iUN0yC4nF6ZaMKUCBltpqTyCiGSXH7MiOg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzkyMDUxNCwiZXhwIjoxNzA3OTMxMzE0fQ.nhZ81REQgGVUJYH8ka8OEMWqhl9C0NvifrFgdSwVaLo
 
 {
   "name": "만원의행복7",
   "licenseNumber": "1234567896",
   "bankName": "신한은행",
-  "accountNumber": "110424092987",
+  "accountNumber": "110634432234",
   "zip": "06307",
   "address": "서울시 강남구",
   "addressDetail": "논현동"
@@ -38,8 +43,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiO
 ### 판매자 삭제
 PUT http://localhost:3000/seller/delete
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzgyODAzNywiZXhwIjoxNzA3ODM4ODM3fQ.vgpI6Tfl0iUN0yC4nF6ZaMKUCBltpqTyCiGSXH7MiOg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzk1NjE4NSwiZXhwIjoxNzA3OTY2OTg1fQ.CZHwL_jQ4yxMCy7N7IGaap-gNHUes74scTHVWmGKd9g
 
 {
-  "licenseNumber": "1234567892"
+  "licenseNumber": "1234567896"
 }

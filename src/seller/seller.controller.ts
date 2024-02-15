@@ -6,7 +6,7 @@ import {
   UseGuards,
   ValidationPipe,
   Put,
-  Param,
+  Get,
 } from '@nestjs/common';
 import { CreateSellerDto } from './dto/create-seller.dto';
 import { SellerService } from './seller.service';
@@ -26,12 +26,18 @@ export class SellerController {
 
     return this.sellerService.create(userId, data);
   }
-
   @Put('delete')
   @UseGuards(JwtAuthGuard)
-  async delete(@Request() req, @Param('licenseNumber') licenseNumber: string) {
+  async delete(@Request() req, @Body(new ValidationPipe()) data) {
     const userId = req.user.id;
 
-    return this.sellerService.delete(userId, licenseNumber);
+    return this.sellerService.delete(userId, data.licenseNumber);
+  }
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  async findSellerByUser(@Request() req) {
+    const userId = req.user.id;
+
+    return this.sellerService.findSellerByUser(userId);
   }
 }

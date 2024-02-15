@@ -42,6 +42,6 @@ export class Seller {
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamp', nullable: true })
-  deletedAt: Date;
+  @DeleteDateColumn({ type: 'timestamp' })
+  deletedAt: Date | null;
 }
