@@ -55,14 +55,43 @@ GET http://localhost:3000/category
 ### 상품 등록
 POST http://localhost:3000/product
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzk1NjE4NSwiZXhwIjoxNzA3OTY2OTg1fQ.CZHwL_jQ4yxMCy7N7IGaap-gNHUes74scTHVWmGKd9g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODAwMTUwMCwiZXhwIjoxNzA4MDEyMzAwfQ.n_iUx3QrDYJtx0FPGsYmde-Ijtts7HGJaegYE1RomBU
 
 {
   "categoryId": 2,
-  "sellerId": 2,
+  "sellerId": 7,
   "name": "상품명",
   "detail": "상세정보",
   "thumbnail": "http://localhost:3000",
   "price": 30000,
   "stock": 5
 }
+
+### 상품 수정
+PUT http://localhost:3000/product/2
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODAwMTUwMCwiZXhwIjoxNzA4MDEyMzAwfQ.n_iUx3QrDYJtx0FPGsYmde-Ijtts7HGJaegYE1RomBU
+
+{
+  "categoryId": 2,
+  "name": "상품명 수정",
+  "detail": "상세정보 수정",
+  "thumbnail": "http://localhost:3000/edit",
+  "price": 25000,
+  "stock": 1
+}
+
+### 상품 전체 조회 (판매자)
+GET http://localhost:3000/product/sellerId=7
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODAwMTUwMCwiZXhwIjoxNzA4MDEyMzAwfQ.n_iUx3QrDYJtx0FPGsYmde-Ijtts7HGJaegYE1RomBU
+
+### 상품 조회
+GET http://localhost:3000/product/2
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODAwMTUwMCwiZXhwIjoxNzA4MDEyMzAwfQ.n_iUx3QrDYJtx0FPGsYmde-Ijtts7HGJaegYE1RomBU
+
+### 상품 삭제
+PUT http://localhost:3000/product/2/delete
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODAwMTUwMCwiZXhwIjoxNzA4MDEyMzAwfQ.n_iUx3QrDYJtx0FPGsYmde-Ijtts7HGJaegYE1RomBU
