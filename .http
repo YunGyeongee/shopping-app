@@ -48,3 +48,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiO
 {
   "licenseNumber": "1234567896"
 }
+
+### 카테고리 조회
+GET http://localhost:3000/category
+
+### 상품 등록
+POST http://localhost:3000/product
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwNzk1NjE4NSwiZXhwIjoxNzA3OTY2OTg1fQ.CZHwL_jQ4yxMCy7N7IGaap-gNHUes74scTHVWmGKd9g
+
+{
+  "categoryId": 2,
+  "sellerId": 2,
+  "name": "상품명",
+  "detail": "상세정보",
+  "thumbnail": "http://localhost:3000",
+  "price": 30000,
+  "stock": 5
+}

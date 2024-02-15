@@ -14,8 +14,8 @@ export class Product {
   @Column({ name: 'category_id' })
   categoryId: number;
 
-  @Column({ name: 'user_id' })
-  userId: number;
+  @Column({ name: 'seller_id' })
+  sellerId: number;
 
   @Column()
   name: string;

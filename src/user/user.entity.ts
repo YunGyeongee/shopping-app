@@ -30,15 +30,15 @@ export class User {
   @Column({ nullable: true })
   address: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, name: 'address_detail' })
   addressDetail: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
   updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamp' })
-  deletedAt: Date | null;
+  @DeleteDateColumn({ type: 'timestamp', name: 'deleted_at', nullable: true })
+  deletedAt: Date;
 }

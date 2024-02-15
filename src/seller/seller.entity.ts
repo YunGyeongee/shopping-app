@@ -12,19 +12,19 @@ export class Seller {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: number;
 
   @Column({ comment: '사업장명' })
   name: string;
 
-  @Column({ unique: true, comment: '사업자번호' })
+  @Column({ name: 'license_number', comment: '사업자번호' })
   licenseNumber: string;
 
-  @Column({ comment: '은행명' })
+  @Column({ name: 'bank_name', comment: '은행명' })
   bankName: string;
 
-  @Column({ comment: '계좌번호' })
+  @Column({ name: 'account_number', comment: '계좌번호' })
   accountNumber: string;
 
   @Column({ nullable: true })
@@ -33,15 +33,15 @@ export class Seller {
   @Column({ nullable: true })
   address: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, name: 'address_detail' })
   addressDetail: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
   updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamp' })
-  deletedAt: Date | null;
+  @DeleteDateColumn({ type: 'timestamp', name: 'deleted_at', nullable: true })
+  deletedAt: Date;
 }

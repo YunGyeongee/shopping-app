@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { AuthModule } from './auth/auth.module';
 import { SellerModule } from './seller/seller.module';
+import { ProductModule } from './product/product.module';
+import { CategoryModule } from './category/category.module';
 import ConfigModule from './config';
 
 const SnakeNamingStrategy = require('typeorm-naming-strategies').SnakeNamingStrategy;
@@ -28,6 +30,8 @@ const SnakeNamingStrategy = require('typeorm-naming-strategies').SnakeNamingStra
     UserModule,
     AuthModule,
     SellerModule,
+    ProductModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
