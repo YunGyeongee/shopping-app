@@ -99,9 +99,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiO
 ### 주문 생성
 POST http://localhost:3000/order
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODIyMzQ3NywiZXhwIjoxNzA4MjM0Mjc3fQ.hTguf7EOOoAo_3_M6_O3PUd6ZW9eFht_9qMqLDlvPyM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODIyMzQ3NywiZXhwIjoxNzA4MjM0Mjc3fQ.hTguf7EOOoAo_3_M6_O3PUd6ZW9eFht_9qMqLDlv
 
 {
   "productId": 1,
-  "amount": 5
+  "amount": 3
 }
+
+### 주문 조회(다건)
+GET http://localhost:3000/order?state=all
+content-type: applicatio
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODIyMzQ3NywiZXhwIjoxNzA4MjM0Mjc3fQ.hTguf7EOOoAo_3_M6_O3PUd6ZW9eFht_9qMqLDlvPyM
+
+### 주문 조회(단건)
+GET http://localhost:3000/order/1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODIyMzQ3NywiZXhwIjoxNzA4MjM0Mjc3fQ.hTguf7EOOoAo_3_M6_O3PUd6ZW9eFht_9qMqLDlvPyM
+
+### 주문 취소
+PUT http://localhost:3000/order/1/cancel
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODIyMzQ3NywiZXhwIjoxNzA4MjM0Mjc3fQ.hTguf7EOOoAo_3_M6_O3PUd6ZW9eFht_9qMqLDlvPyM

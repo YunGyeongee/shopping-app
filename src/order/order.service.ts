@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from './order.entity';
 import { Repository } from 'typeorm';
@@ -40,5 +44,53 @@ export class OrderService {
     await this.productRepository.update(data.productId, { stock: cal });
 
     return order;
+  }
+  async findAll(userId: number) {
+    return this.orderRepository.find({ where: { userId } });
+  }
+  async findOne(userId: number, orderId: number) {
+    const order = await this.orderRepository.findOne({
+      where: { id: orderId },
+    });
+
+    if (!order) {
+      throw new BadRequestException('유효한 주문이 아닙니다.');
+    }
+
+    if (order.userId != userId) {
+      throw new UnauthorizedException('주문 조회 권한이 없습니다.');
+    }
+
+    return order;
+  }
+  async cancel(userId: number, orderId: number) {
+    const order = await this.orderRepository.findOne({
+      where: { id: orderId },
+    });
+
+    if (!order) {
+      throw new BadRequestException('유효한 주문이 아닙니다.');
+    }
+
+    if (order.userId != userId) {
+      throw new UnauthorizedException('주문 취소 권한이 없습니다.');
+    }
+
+    return this.orderRepository.update(orderId, { state: 'cancel' });
+  }
+  async refund(userId: number, orderId: number) {
+    const order = await this.orderRepository.findOne({
+      where: { id: orderId },
+    });
+
+    if (!order) {
+      throw new BadRequestException('유효한 주문이 아닙니다.');
+    }
+
+    if (order.userId != userId) {
+      throw new UnauthorizedException('주문 환불 권한이 없습니다.');
+    }
+
+    return this.orderRepository.update(orderId, { state: 'refund' });
   }
 }

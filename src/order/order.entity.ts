@@ -22,7 +22,7 @@ export class Order {
 
   @Column({
     comment:
-      '주문상태 (order: 주문(=결제대기), paid: 결제, delivery: 배송중, done: 완료, cancel: 취소, refund: 환불, return: 교환)',
+      '주문상태 (order: 주문(=결제대기), paid: 결제, delivery: 배송중, done: 완료, cancel: 취소, refund: 환불)',
   })
   state: string;
 
