@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { SellerModule } from './seller/seller.module';
 import { ProductModule } from './product/product.module';
 import { CategoryModule } from './category/category.module';
+import { OrderModule } from './order/order.module';
 import ConfigModule from './config';
 
 const SnakeNamingStrategy = require('typeorm-naming-strategies').SnakeNamingStrategy;
@@ -32,6 +33,7 @@ const SnakeNamingStrategy = require('typeorm-naming-strategies').SnakeNamingStra
     SellerModule,
     ProductModule,
     CategoryModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
