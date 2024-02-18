@@ -62,8 +62,6 @@ export class ProductService {
     });
   }
   async findAll(userId: number, sellerId: number) {
-    console.log('sellerId');
-    console.log(sellerId);
     const seller = await this.sellerRepository.findOne({
       where: { id: sellerId },
     });
