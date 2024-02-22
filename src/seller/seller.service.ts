@@ -8,6 +8,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Seller } from './seller.entity';
 import { Repository } from 'typeorm';
 import { CreateSellerDto } from './dto/create-seller.dto';
+import axios from 'axios';
+import * as process from 'process';
 
 @Injectable()
 export class SellerService {
@@ -16,14 +18,29 @@ export class SellerService {
     private readonly sellerRepository: Repository<Seller>,
   ) {}
 
-  async create(userId: number, data: CreateSellerDto) {
-    // todo - 사업자번호 유효성 체크 -> api 검증으로 변경하기
-    const licenseLengthCheck = data.licenseNumber.length;
+  async checkLicense(licenseNumber: string) {
+    const serviceKey = process.env.SERVICE_KEY;
+    const data = {
+      b_no: [licenseNumber],
+    };
 
-    if (licenseLengthCheck !== 10) {
-      throw new BadRequestException('사업자번호가 유효하지 않습니다.');
+    const res = await axios
+      .post(
+        `https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=${serviceKey}`,
+        data,
+        { responseType: 'json' },
+      )
+      .then((res) => {
+        return res.data;
+      });
+
+    if (res.data[0].b_stt_cd !== '01') {
+      throw new BadRequestException(
+        '유효한 사업자번호가 아닙니다. (휴면, 폐업 포함)',
+      );
     }
-
+  }
+  async create(userId: number, data: CreateSellerDto) {
     const seller = this.sellerRepository.create({
       userId: userId,
       name: data.name,

@@ -24,6 +24,7 @@ export class SellerController {
   ) {
     const userId = req.user.id;
 
+    await this.sellerService.checkLicense(data.licenseNumber);
     return this.sellerService.create(userId, data);
   }
   @Put('delete')
