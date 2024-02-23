@@ -18,10 +18,10 @@ export class User {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
   phone: string;
 
   @Column({ nullable: true })
@@ -32,6 +32,9 @@ export class User {
 
   @Column({ nullable: true, name: 'address_detail' })
   addressDetail: string;
+
+  @Column({ nullable: true })
+  provider: string;
 
   @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
   createdAt: Date;
