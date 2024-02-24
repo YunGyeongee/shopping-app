@@ -6,12 +6,12 @@ import {
 } from 'typeorm';
 
 @Entity('fees')
-export class fee {
+export class Fee {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'user_id' })
-  userId: number;
+  @Column({ name: 'seller_id' })
+  sellerId: number;
 
   @Column({ name: 'calculated_date', comment: '정산 날짜' })
   calculatedDate: Date;

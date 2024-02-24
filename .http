@@ -120,3 +120,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiO
 PUT http://localhost:3000/order/1/cancel
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODIyMzQ3NywiZXhwIjoxNzA4MjM0Mjc3fQ.hTguf7EOOoAo_3_M6_O3PUd6ZW9eFht_9qMqLDlvPyM
+
+### 수수료 조회
+GET http://localhost:3000/fee
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODc4MTc2NywiZXhwIjoxNzA4NzkyNTY3fQ._o5NH2Pmif9HAEEfWqFl3-l-BCNFZ0Vd2LOwQMOdYsI
+
+### 수수료 조회(특정 셀러)
+GET http://localhost:3000/fee/19
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ1c2VyMDVAZ21haWwuY29tIiwibmFtZSI6InVzZXIwNSIsImlhdCI6MTcwODc4MTc2NywiZXhwIjoxNzA4NzkyNTY3fQ._o5NH2Pmif9HAEEfWqFl3-l-BCNFZ0Vd2LOwQMOdYsI
