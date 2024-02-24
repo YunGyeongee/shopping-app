@@ -11,8 +11,9 @@ export class UserController {
   ) {}
 
   @Get()
-  getUsers() {
-    return this.userService.getUsers();
+  async findAll() {
+    // todo - 관리자 권한일 경우에만 통과
+    return this.userService.findAll();
   }
   @Post()
   async create(@Body(new ValidationPipe()) data: CreateUserDto) {

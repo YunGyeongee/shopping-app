@@ -12,7 +12,7 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async getUsers() {
+  async findAll() {
     return this.usersRepository.find();
   }
   async findOneByEmail(email: string) {
