@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -24,7 +25,7 @@ export class OrderService {
     });
 
     if (!product) {
-      throw new BadRequestException('상품을 찾을 수 없습니다.');
+      throw new NotFoundException('상품을 찾을 수 없습니다.');
     }
 
     // 재고 확인
@@ -54,7 +55,7 @@ export class OrderService {
     });
 
     if (!order) {
-      throw new BadRequestException('유효한 주문이 아닙니다.');
+      throw new NotFoundException('유효한 주문이 아닙니다.');
     }
 
     if (order.userId != userId) {
@@ -69,7 +70,7 @@ export class OrderService {
     });
 
     if (!order) {
-      throw new BadRequestException('유효한 주문이 아닙니다.');
+      throw new NotFoundException('유효한 주문이 아닙니다.');
     }
 
     if (order.userId != userId) {
@@ -84,7 +85,7 @@ export class OrderService {
     });
 
     if (!order) {
-      throw new BadRequestException('유효한 주문이 아닙니다.');
+      throw new NotFoundException('유효한 주문이 아닙니다.');
     }
 
     if (order.userId != userId) {

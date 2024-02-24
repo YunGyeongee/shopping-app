@@ -90,7 +90,7 @@ export class ProductService {
     const product = await this.productRepository.findOne({ where: { id } });
 
     if (!product) {
-      throw new BadRequestException('상품을 찾을 수 없습니다.');
+      throw new NotFoundException('상품을 찾을 수 없습니다.');
     }
 
     const seller = await this.sellerRepository.findOne({

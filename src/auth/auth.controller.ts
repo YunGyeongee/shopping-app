@@ -8,20 +8,16 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { GoogleOAuthGuard } from './google-oauth.guard';
-import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private readonly userService: UserService,
-    private readonly authService: AuthService,
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
-  login(@Request() req) {
+  async login(@Request() req) {
     return this.authService.login(req.user);
   }
   @Get('google/login')

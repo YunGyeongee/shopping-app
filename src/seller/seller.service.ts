@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -69,7 +70,7 @@ export class SellerService {
     });
 
     if (!seller) {
-      throw new BadRequestException('사업자를 찾을 수 없습니다.');
+      throw new NotFoundException('사업자를 찾을 수 없습니다.');
     }
 
     if (userId !== seller.userId) {
