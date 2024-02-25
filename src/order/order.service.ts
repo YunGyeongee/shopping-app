@@ -36,6 +36,7 @@ export class OrderService {
     const order = this.orderRepository.save({
       userId: userId,
       productId: data.productId,
+      sellerId: product.sellerId,
       amount: data.amount,
       state: 'order',
     });

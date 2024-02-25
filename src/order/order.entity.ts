@@ -14,6 +14,9 @@ export class Order {
   @Column({ name: 'user_id' })
   userId: number;
 
+  @Column({ name: 'seller_id' })
+  sellerId: number;
+
   @Column({ name: 'product_id' })
   productId: number;
 
