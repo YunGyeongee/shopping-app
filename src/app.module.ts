@@ -11,11 +11,13 @@ import { CategoryModule } from './category/category.module';
 import { OrderModule } from './order/order.module';
 import { FeeModule } from './fee/fee.module';
 import ConfigModule from './config';
+import { ScheduleModule } from '@nestjs/schedule';
 
 const SnakeNamingStrategy = require('typeorm-naming-strategies').SnakeNamingStrategy;
 @Module({
   imports: [
     ConfigModule(),
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
