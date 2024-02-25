@@ -23,6 +23,9 @@ export class Order {
   @Column()
   amount: number;
 
+  @Column({ comment: '결제 금액' })
+  payment: number;
+
   @Column({
     comment:
       '주문상태 (order: 주문(=결제대기), paid: 결제, delivery: 배송중, done: 완료, cancel: 취소, refund: 환불)',

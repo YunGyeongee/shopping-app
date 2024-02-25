@@ -38,6 +38,7 @@ export class OrderService {
       productId: data.productId,
       sellerId: product.sellerId,
       amount: data.amount,
+      payment: data.amount * product.price,
       state: 'order',
     });
 
