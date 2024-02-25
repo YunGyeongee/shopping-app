@@ -5,6 +5,7 @@ import {
   UseGuards,
   Param,
   ParseIntPipe,
+  Post,
 } from '@nestjs/common';
 import { FeeService } from './fee.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -20,7 +21,6 @@ export class FeeController {
 
     return this.feeService.findAll(userId);
   }
-
   @Get(':sellerId')
   @UseGuards(JwtAuthGuard)
   async findBySellerId(
@@ -30,5 +30,10 @@ export class FeeController {
     const userId = req.user.id;
 
     return this.feeService.findBySellerId(userId, sellerId);
+  }
+  @Post()
+  async create() {
+    // todo - 관리자만 실행할 수 있도록 개선
+    return this.feeService.create();
   }
 }
