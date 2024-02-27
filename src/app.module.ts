@@ -12,8 +12,8 @@ import { OrderModule } from './order/order.module';
 import { FeeModule } from './fee/fee.module';
 import ConfigModule from './config';
 import { ScheduleModule } from '@nestjs/schedule';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
-const SnakeNamingStrategy = require('typeorm-naming-strategies').SnakeNamingStrategy;
 @Module({
   imports: [
     ConfigModule(),
