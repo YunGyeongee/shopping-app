@@ -16,7 +16,7 @@ export class UserService {
     return this.usersRepository.find();
   }
   async findOneByEmail(email: string) {
-    const user = this.usersRepository.findOne({
+    const user = await this.usersRepository.findOne({
       where: { email },
       withDeleted: true,
     });
