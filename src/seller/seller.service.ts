@@ -66,7 +66,7 @@ export class SellerService {
   }
   async delete(userId: number, licenseNumber: string) {
     const seller = await this.sellerRepository.findOne({
-      where: { licenseNumber },
+      where: { licenseNumber, userId },
     });
 
     if (!seller) {

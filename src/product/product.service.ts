@@ -61,7 +61,7 @@ export class ProductService {
       stock: data.stock,
     });
   }
-  async findAll(userId: number, sellerId: number) {
+  async findBySeller(userId: number, sellerId: number) {
     const seller = await this.sellerRepository.findOne({
       where: { id: sellerId },
     });
@@ -74,8 +74,8 @@ export class ProductService {
       where: { sellerId: seller.id },
     });
   }
-  async findOne(userId: number, id: number) {
-    const product = await this.productRepository.findOne({ where: { id } });
+  async findByProduct(userId: number, productId: number) {
+    const product = await this.productRepository.findOne({ where: { id: productId } });
     const seller = await this.sellerRepository.findOne({
       where: { id: product.sellerId },
     });
@@ -84,7 +84,7 @@ export class ProductService {
       throw new UnauthorizedException('상품 조회 권한이 없습니다.');
     }
 
-    return this.productRepository.find({ where: { id } });
+    return product;
   }
   async delete(userId: number, id: number) {
     const product = await this.productRepository.findOne({ where: { id } });
