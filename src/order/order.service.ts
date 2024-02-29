@@ -59,8 +59,7 @@ export class OrderService {
     if (!order) {
       throw new NotFoundException('유효한 주문이 아닙니다.');
     }
-
-    if (order.userId != userId) {
+    if (userId != order.userId) {
       throw new UnauthorizedException('주문 조회 권한이 없습니다.');
     }
 

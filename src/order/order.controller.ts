@@ -13,13 +13,35 @@ import {
 import { OrderService } from './order.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('order')
+@ApiTags('order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: '전체 주문 조회' })
+  async findAll(@Request() req) {
+    const userId = req.user.id;
+
+    return this.orderService.findAll(userId);
+  }
+  @Get(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: '주문 조회' })
+  async findOne(@Request() req, @Param('id', ParseIntPipe) orderId: number) {
+    const userId = req.user.id;
+
+    return this.orderService.findOne(userId, orderId);
+  }
   @Post()
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: '주문 생성' })
   async create(
     @Request() req,
     @Body(new ValidationPipe()) data: CreateOrderDto,
@@ -28,22 +50,10 @@ export class OrderController {
 
     return this.orderService.create(userId, data);
   }
-  @Get()
-  @UseGuards(JwtAuthGuard)
-  async findAll(@Request() req) {
-    const userId = req.user.id;
-
-    return this.orderService.findAll(userId);
-  }
-  @Get()
-  @UseGuards(JwtAuthGuard)
-  async findOne(@Request() req, @Param('id', ParseIntPipe) orderId: number) {
-    const userId = req.user.id;
-
-    return this.orderService.findOne(userId, orderId);
-  }
   @Put(':id/cancel')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: '주문 취소' })
   async cancel(@Request() req, @Param('id', ParseIntPipe) orderId: number) {
     const userId = req.user.id;
 
@@ -51,6 +61,8 @@ export class OrderController {
   }
   @Put(':id/return')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: '주문 환불(반품)' })
   async return(@Request() req, @Param('id', ParseIntPipe) orderId: number) {
     const userId = req.user.id;
 
