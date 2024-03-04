@@ -13,6 +13,7 @@ import { FeeModule } from './fee/fee.module';
 import ConfigModule from './config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { UserPermissionModule } from './user-permission/user-permission.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
     CategoryModule,
     OrderModule,
     FeeModule,
+    UserPermissionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

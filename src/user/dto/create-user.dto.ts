@@ -1,4 +1,10 @@
-import { IsEmail, IsNotEmpty, IsPhoneNumber, MinLength } from 'class-validator';
+import {
+  IsBoolean,
+  IsEmail,
+  IsNotEmpty,
+  IsPhoneNumber,
+  MinLength,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
@@ -20,4 +26,9 @@ export class CreateUserDto {
   @IsNotEmpty()
   @ApiProperty({ default: '01012341234' })
   phone: string;
+
+  @IsBoolean()
+  @IsNotEmpty()
+  @ApiProperty({ default: false })
+  isAdmin: boolean;
 }

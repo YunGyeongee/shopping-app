@@ -5,7 +5,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
+import { UserPermission } from '../user-permission/user-permission.entity';
 
 @Entity('users')
 export class User {
@@ -44,4 +47,10 @@ export class User {
 
   @DeleteDateColumn({ type: 'timestamp', name: 'deleted_at', nullable: true })
   deletedAt: Date;
+
+  @OneToOne(() => UserPermission, (permission) => permission.userId, {
+    eager: true,
+  })
+  @JoinColumn({ name: 'id' })
+  permission: UserPermission;
 }

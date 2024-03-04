@@ -4,6 +4,7 @@ import { User } from './user.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { hash } from 'bcrypt';
+import { UserPermission } from '../user-permission/user-permission.entity';
 
 @Injectable()
 export class UserService {
@@ -35,11 +36,18 @@ export class UserService {
   async create(data: CreateUserDto) {
     const { email, password, phone } = data;
 
-    return this.userRepository.save({
+    const user = await this.userRepository.save({
       email,
       password,
       phone,
     });
+
+    await this.userPermissionRepository.save({
+      user_id: user.id,
+      permission: data.isAdmin ? 'admin' : 'user',
+    });
+
+    return user;
   }
   async getUserByEmail(email: string) {
     return this.userRepository.findOneBy({
