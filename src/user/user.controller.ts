@@ -1,21 +1,29 @@
-import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { AuthService } from '../auth/auth.service';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Roles } from '../auth/decorator/role.decorator';
+import { JwtAuthGuard } from '../auth/security/jwt-auth.guard';
+import { RolesGuard } from '../auth/security/roles.guard';
 
 @Controller('user')
 @ApiTags('user')
 export class UserController {
-  constructor(
-    private readonly userService: UserService,
-    private readonly authService: AuthService,
-  ) {}
+  constructor(private readonly userService: UserService) {}
 
   @Get()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
+  @ApiBearerAuth('access-token')
   @ApiOperation({ summary: '모든 유저 조회' })
   async findAll() {
-    // todo - 관리자 권한일 경우에만 통과
     return this.userService.findAll();
   }
   @Post()

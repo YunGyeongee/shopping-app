@@ -17,7 +17,6 @@ export class FeeService {
   ) {}
 
   async findAll(userId: number) {
-    // todo - 관리자 권한의 경우 전체 조회
     const sellers = await this.sellerRepository.find({
       where: { userId },
     });

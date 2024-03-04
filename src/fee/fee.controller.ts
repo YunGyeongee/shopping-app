@@ -10,6 +10,8 @@ import {
 import { FeeService } from './fee.service';
 import { JwtAuthGuard } from '../auth/security/jwt-auth.guard';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { RolesGuard } from '../auth/security/roles.guard';
+import { Roles } from '../auth/decorator/role.decorator';
 
 @Controller('fee')
 @ApiTags('fee')
@@ -38,10 +40,11 @@ export class FeeController {
     return this.feeService.findBySellerId(userId, sellerId);
   }
   @Post()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   @ApiBearerAuth('access-token')
   @ApiOperation({ summary: '수수료 정산 생성' })
   async create() {
-    // todo - 관리자만 실행할 수 있도록 개선
     return this.feeService.create();
   }
 }

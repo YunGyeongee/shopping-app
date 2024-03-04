@@ -9,12 +9,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './security/jwt.strategy';
 import { GoogleStrategy } from './security/google-oauth.strategy';
 import { AuthController } from './auth.controller';
+import { UserPermission } from '../user-permission/user-permission.entity';
 
 @Module({
   imports: [
     forwardRef(() => UserModule),
     PassportModule,
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, UserPermission]),
     JwtModule.register({
       secret: 'secret_key',
       signOptions: {

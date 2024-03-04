@@ -5,9 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Fee } from './fee.entity';
 import { Seller } from '../seller/seller.entity';
 import { Order } from '../order/order.entity';
+import { UserPermission } from '../user-permission/user-permission.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Fee, Seller, Order])],
+  imports: [TypeOrmModule.forFeature([Fee, Seller, Order, UserPermission])],
   providers: [FeeService],
   controllers: [FeeController],
   exports: [FeeService],
