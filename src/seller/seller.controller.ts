@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { CreateSellerDto } from './dto/create-seller.dto';
 import { SellerService } from './seller.service';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/security/jwt-auth.guard';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('seller')
