@@ -19,7 +19,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
 
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private userRepository: Repository<User>,
   ) {}
 
   async validateUser(email: string, password: string) {
@@ -53,7 +53,7 @@ export class AuthService {
         return user;
       }
 
-      return await this.usersRepository.save({
+      return await this.userRepository.save({
         email: email,
         name: fullName,
         provider: provider,

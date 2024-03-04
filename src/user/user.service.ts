@@ -9,14 +9,16 @@ import { hash } from 'bcrypt';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private userRepository: Repository<User>,
+    @InjectRepository(UserPermission)
+    private userPermissionRepository: Repository<UserPermission>,
   ) {}
 
   async findAll() {
-    return this.usersRepository.find();
+    return this.userRepository.find();
   }
   async findOneByEmail(email: string) {
-    const user = await this.usersRepository.findOne({
+    const user = await this.userRepository.findOne({
       where: { email },
       withDeleted: true,
     });
@@ -33,14 +35,14 @@ export class UserService {
   async create(data: CreateUserDto) {
     const { email, password, phone } = data;
 
-    return this.usersRepository.save({
+    return this.userRepository.save({
       email,
       password,
       phone,
     });
   }
   async getUserByEmail(email: string) {
-    return this.usersRepository.findOneBy({
+    return this.userRepository.findOneBy({
       email,
     });
   }
