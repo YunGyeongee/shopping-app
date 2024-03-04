@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { FeeService } from './fee.service';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/security/jwt-auth.guard';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('fee')

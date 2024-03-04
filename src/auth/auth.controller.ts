@@ -1,5 +1,4 @@
 import {
-  Body,
   Controller,
   Get,
   Post,
@@ -7,9 +6,9 @@ import {
   Response,
   UseGuards,
 } from '@nestjs/common';
-import { GoogleOAuthGuard } from './google-oauth.guard';
+import { GoogleOAuthGuard } from './security/google-oauth.guard';
 import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './local-auth.guard';
+import { LocalAuthGuard } from './security/local-auth.guard';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')

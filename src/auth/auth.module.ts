@@ -4,10 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../user/user.entity';
 import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
-import { LocalStrategy } from './auth.strategy';
+import { LocalStrategy } from './security/auth.strategy';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from './jwt.strategy';
-import { GoogleStrategy } from './google-oauth.strategy';
+import { JwtStrategy } from './security/jwt.strategy';
+import { GoogleStrategy } from './security/google-oauth.strategy';
 import { AuthController } from './auth.controller';
 
 @Module({
