@@ -1,4 +1,4 @@
-updated : 05/03/2024
+updated : 13/03/2024
 
 # 개발 환경
 - 언어/프레임워크 : TypeScript, Node.js(18.19.0), NestJs(10.3.0)
@@ -8,9 +8,8 @@ updated : 05/03/2024
 # 목표
 - ```NestJS``` 가 무엇인지, 어떻게 사용하는지 숙지 후 API 생성
 - ```oAuth``` 를 사용하여 구글 로그인 연동
-- 결제 시스템 연동
 - 정산 커맨드 작성 (*정산 수수료는 판매금의 5%로 통일한다.)
-- ```Jenkins``` 를 통한 배포
+- ```AWS``` 를 통한 배포
 
 # ERD
 ![erd_2](https://github.com/YunGyeongee/shopping-app/assets/86589216/04101bbf-da16-4405-94d4-3eaf3e87c9b2)
@@ -84,3 +83,7 @@ npm run start:dev
 ```
 http://localhost:3000/api
 ```
+
+# Trouble Shooting
+- [Mac M1 zsh: command not found: nest](https://reyoo-dev.tistory.com/entry/Mac-M1-zsh-command-not-found-nest)
+- [Validation failed(numeric string is expected)](https://reyoo-dev.tistory.com/entry/NestJs-Validation-failed-numeric-string-is-expected)
